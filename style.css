@@ -1,106 +1,206 @@
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
     padding: 20px;
 }
 
 h1 {
     text-align: center;
     color: #2c3e50;
-    margin-bottom: 25px;
-    font-size: 28px;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
 }
 
-.carro {
+/* --- NOVO LAYOUT DO CONTAINER PRINCIPAL --- */
+.container {
+    display: flex;
+    flex-direction: column; /* Força o layout a ser sempre vertical */
+    align-items: center;    /* Centraliza os filhos (carros e gráfico) na página */
+    width: 100%;
+    gap: 25px;              /* Espaçamento entre os cartões */
+}
+
+.carro, .grafico-container {
     background: white;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 12px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-    max-width: 400px;
-    animation: fadeIn 0.5s ease-in-out;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;            /* Ocupa toda a largura do container pai */
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Define uma largura máxima para não ficar gigante em telas grandes */
+.carro {
+    max-width: 600px; 
+}
+.grafico-container {
+    max-width: 800px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 h2 {
     color: #34495e;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+/* Os inputs ficam lado a lado em telas maiores */
+.inputs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 label {
     display: block;
-    margin-top: 8px;
-    font-weight: bold;
+    margin-bottom: 5px;
+    font-weight: 600;
     color: #555;
+    font-size: 0.9rem;
 }
 
 input {
     width: 100%;
     padding: 10px;
-    margin-top: 4px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    transition: border-color 0.3s;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus {
     outline: none;
     border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
-button {
-    background: #3498db;
-    color: white;
+.botoes-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    flex-grow: 1;
     border: none;
     padding: 12px;
-    margin-top: 15px;
-    width: 100%;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s, transform 0.1s;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s, transform 0.1s;
 }
 
-button:hover {
-    background: #2980b9;
-    transform: scale(1.02);
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+.btn-danger:hover {
+    background-color: #c0392b;
 }
 
 .lista {
-    margin-top: 15px;
+    margin-top: 20px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 5px;
 }
 
 .item {
     background: #ecf0f1;
-    padding: 8px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-dados {
+    flex-grow: 1;
+    /* Evita que o texto "vaze" do container, resolvendo o problema de corte */
+    word-break: break-word;
+}
+
+.btn-remover {
+    background: none;
+    border: none;
+    color: #c0392b;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: color 0.3s;
+}
+.btn-remover:hover {
+    color: #e74c3c;
 }
 
 .total {
-    font-weight: bold;
-    margin-top: 10px;
+    font-weight: 700;
+    margin-top: 15px;
     color: #27ae60;
-    font-size: 16px;
+    font-size: 1.1rem;
+    text-align: right;
+    padding-top: 10px;
+    border-top: 2px solid #ecf0f1;
 }
 
-.grafico-container {
-    background: white;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 12px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-    max-width: 600px;
-}
+/* ========================================= */
+/* === RESPONSIVIDADE PARA TELAS PEQUENAS === */
+/* ========================================= */
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Reduz o espaçamento geral */
+    }
 
-@media (max-width: 500px) {
+    h1 {
+        font-size: 1.7rem; /* Diminui o título principal */
+    }
+
     .carro, .grafico-container {
-        max-width: 100%;
+        padding: 15px; /* Diminui o espaçamento interno dos cartões */
+    }
+
+    /* Em telas pequenas, os inputs ficam um embaixo do outro */
+    .inputs-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .botoes-container {
+        flex-direction: column; /* Empilha os botões */
     }
 }

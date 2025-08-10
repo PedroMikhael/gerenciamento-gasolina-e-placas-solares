@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Gasolina</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h1>🚗 Controle de Abastecimentos</h1>
+
+    <div class="carro" id="carro1">
+        <h2>HB-20</h2>
+        <label>Data do abastecimento:</label>
+        <input type="date" id="data1">
+        
+        <label>Preço total abastecimento (R$):</label>
+        <input type="number" step="0.01" id="preco1" placeholder="Ex: 250.00">
+        
+        
+        <button onclick="adicionarAbastecimento(1)">Adicionar abastecimento</button>
+        
+        <div class="lista" id="lista1"></div>
+        <div class="total" id="total1">Total gasto: R$ 0,00</div>
+    </div>
+
+    <div class="carro" id="carro2">
+        <h2>FREEMONT</h2>
+        <label>Data do abastecimento:</label>
+        <input type="date" id="data2">
+        
+        <label>Preço total abastecimento (R$):</label>
+        <input type="number" step="0.01" id="preco2" placeholder="Ex: 200.00">
+        
+        
+        <button onclick="adicionarAbastecimento(2)">Adicionar abastecimento</button>
+        
+        <div class="lista" id="lista2"></div>
+        <div class="total" id="total2">Total gasto: R$ 0,00</div>
+    </div>
+
+    <!-- Gráfico -->
+    <div class="grafico-container">
+        <h2>📊 Comparativo de Gastos</h2>
+        <canvas id="graficoGastos"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

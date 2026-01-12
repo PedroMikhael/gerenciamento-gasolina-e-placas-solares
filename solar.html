@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Placas Solares</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <h1>☀️ Controle de Energia Solar</h1>
+
+    <nav>
+        <a href="index.html">🚗 Abastecimentos</a>
+        <a href="solar.html" class="active">☀️ Placas Solares</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- Área para adicionar novas placas -->
+        <div class="carro" style="border-left: 5px solid #f39c12;">
+            <h2>➕ Nova Placa</h2>
+            <div class="inputs-grid">
+                <div>
+                    <label for="novoNomePlaca">Nome da Placa:</label>
+                    <input type="text" id="novoNomePlaca" placeholder="Ex: Placa Telhado Norte">
+                </div>
+                <div>
+                    <label for="novaCapacidadePlaca">Potência/Capacidade (W):</label>
+                    <input type="number" id="novaCapacidadePlaca" placeholder="Ex: 450">
+                </div>
+            </div>
+            <div class="botoes-container">
+                <button class="btn btn-primary" onclick="criarPlaca()" style="background-color: #f39c12;">➕ Cadastrar
+                    Placa</button>
+            </div>
+        </div>
+
+        <!-- Onde as placas serão geradas dinamicamente -->
+        <div id="placasContainer"
+            style="width: 100%; display: flex; flex-direction: column; gap: 25px; align-items: center;">
+            <!-- Placas inseridas via JS -->
+        </div>
+
+        <div class="grafico-container">
+            <h2>📊 Comparativo de Geração (kWh)</h2>
+            <canvas id="graficoSolar"></canvas>
+            <div style="margin-top: 15px; text-align: center;">
+                <button class="btn" onclick="mudarPeriodo('dia')" id="btnDia"
+                    style="background: #3498db; color: white;">Por Dia</button>
+                <button class="btn" onclick="mudarPeriodo('mes')" id="btnMes"
+                    style="background: #ecf0f1; color: #333;">Por Mês</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="solar.js"></script>
+</body>
+
+</html>

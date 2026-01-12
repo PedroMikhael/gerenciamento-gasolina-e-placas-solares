@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,18 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
     <h1>🚗 Controle de Abastecimentos</h1>
 
+    <nav>
+        <a href="index.html" class="active">🚗 Abastecimentos</a>
+        <a href="solar.html">☀️ Placas Solares</a>
+    </nav>
+
     <div class="container">
-        
+
         <div class="carro" id="carro1">
             <h2>HB-20</h2>
             <div class="inputs-grid">
@@ -25,12 +32,12 @@
                     <input type="number" step="0.01" id="preco1" placeholder="150.50">
                 </div>
             </div>
-            
+
             <div class="botoes-container">
                 <button class="btn btn-primary" onclick="adicionarAbastecimento(1)">➕ Adicionar</button>
                 <button class="btn btn-danger" onclick="reiniciarDados(1)">🗑️ Resetar Dados</button>
             </div>
-            
+
             <div class="lista" id="lista1"></div>
             <div class="total" id="total1">Total gasto: R$ 0,00</div>
         </div>
@@ -38,7 +45,7 @@
         <div class="carro" id="carro2">
             <h2>FREEMONT</h2>
             <div class="inputs-grid">
-                 <div>
+                <div>
                     <label for="data2">Data:</label>
                     <input type="date" id="data2">
                 </div>
@@ -47,12 +54,12 @@
                     <input type="number" step="0.01" id="preco2" placeholder="250.00">
                 </div>
             </div>
-            
+
             <div class="botoes-container">
                 <button class="btn btn-primary" onclick="adicionarAbastecimento(2)">➕ Adicionar</button>
                 <button class="btn btn-danger" onclick="reiniciarDados(2)">🗑️ Resetar Dados</button>
             </div>
-            
+
             <div class="lista" id="lista2"></div>
             <div class="total" id="total2">Total gasto: R$ 0,00</div>
         </div>
@@ -66,4 +73,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

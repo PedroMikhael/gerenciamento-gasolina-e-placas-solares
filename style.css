@@ -20,35 +20,76 @@ h1 {
     font-size: 2.2rem;
 }
 
+/* --- NAVBAR --- */
+nav {
+    background: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+    background-color: #3498db;
+    color: white;
+}
+
 /* --- NOVO LAYOUT DO CONTAINER PRINCIPAL --- */
 .container {
     display: flex;
-    flex-direction: column; /* Força o layout a ser sempre vertical */
-    align-items: center;    /* Centraliza os filhos (carros e gráfico) na página */
+    flex-direction: column;
+    /* Força o layout a ser sempre vertical */
+    align-items: center;
+    /* Centraliza os filhos (carros e gráfico) na página */
     width: 100%;
-    gap: 25px;              /* Espaçamento entre os cartões */
+    gap: 25px;
+    /* Espaçamento entre os cartões */
 }
 
-.carro, .grafico-container {
+.carro,
+.grafico-container {
     background: white;
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    width: 100%;            /* Ocupa toda a largura do container pai */
+    width: 100%;
+    /* Ocupa toda a largura do container pai */
     animation: fadeIn 0.5s ease-out;
 }
 
 /* Define uma largura máxima para não ficar gigante em telas grandes */
 .carro {
-    max-width: 600px; 
+    max-width: 600px;
 }
+
 .grafico-container {
     max-width: 800px;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 h2 {
@@ -116,6 +157,7 @@ input:focus {
     background-color: #3498db;
     color: white;
 }
+
 .btn-primary:hover {
     background-color: #2980b9;
 }
@@ -124,6 +166,7 @@ input:focus {
     background-color: #e74c3c;
     color: white;
 }
+
 .btn-danger:hover {
     background-color: #c0392b;
 }
@@ -163,6 +206,7 @@ input:focus {
     margin-left: 10px;
     transition: color 0.3s;
 }
+
 .btn-remover:hover {
     color: #e74c3c;
 }
@@ -183,15 +227,19 @@ input:focus {
 
 @media (max-width: 768px) {
     body {
-        padding: 10px; /* Reduz o espaçamento geral */
+        padding: 10px;
+        /* Reduz o espaçamento geral */
     }
 
     h1 {
-        font-size: 1.7rem; /* Diminui o título principal */
+        font-size: 1.7rem;
+        /* Diminui o título principal */
     }
 
-    .carro, .grafico-container {
-        padding: 15px; /* Diminui o espaçamento interno dos cartões */
+    .carro,
+    .grafico-container {
+        padding: 15px;
+        /* Diminui o espaçamento interno dos cartões */
     }
 
     /* Em telas pequenas, os inputs ficam um embaixo do outro */
@@ -201,6 +249,7 @@ input:focus {
     }
 
     .botoes-container {
-        flex-direction: column; /* Empilha os botões */
+        flex-direction: column;
+        /* Empilha os botões */
     }
 }

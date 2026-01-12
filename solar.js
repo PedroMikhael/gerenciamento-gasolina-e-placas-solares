@@ -1,8 +1,7 @@
 
-// Recupera dados ou inicia vazio
 let dadosSolar = JSON.parse(localStorage.getItem("solar")) || [];
 let graficoSolarRef = null;
-let periodoGrafico = 'dia'; // 'dia' ou 'mes'
+let periodoGrafico = 'dia'; 
 
 const cores = [
     '#e67e22', '#2ecc71', '#3498db', '#9b59b6', '#34495e',
@@ -19,7 +18,6 @@ function formatarData(dataString) {
     return `${partes[2]}/${partes[1]}/${partes[0]}`;
 }
 
-// Cria uma nova placa
 function criarPlaca() {
     const nomeInput = document.getElementById('novoNomePlaca');
     const capInput = document.getElementById('novaCapacidadePlaca');
@@ -47,7 +45,6 @@ function criarPlaca() {
     capInput.value = '';
 }
 
-// Adiciona leitura a uma placa específica
 function adicionarLeitura(idPlaca) {
     const dataInput = document.getElementById(`data-${idPlaca}`);
     const kwhInput = document.getElementById(`kwh-${idPlaca}`);
@@ -63,8 +60,7 @@ function adicionarLeitura(idPlaca) {
     const placa = dadosSolar.find(p => p.id === idPlaca);
     if (placa) {
         placa.leituras.push({ data, kwh });
-        // Ordena por data (decrescente para lista, mas crescente para gráfico facilitaria - vamos ordenar crescente geral e reverter na view se precisar)
-        // O código original ordena DECRESCENTE para a lista (mais recente em cima).
+
         placa.leituras.sort((a, b) => new Date(b.data) - new Date(a.data));
 
         salvarSolar();
@@ -107,9 +103,9 @@ function renderizarPlacas() {
     dadosSolar.forEach((placa, index) => {
         const totalGerado = placa.leituras.reduce((acc, l) => acc + l.kwh, 0);
 
-        // HTML do Card
+        
         const card = document.createElement('div');
-        card.className = 'carro'; // Reusing style
+        card.className = 'carro'; 
         card.style.borderLeft = `5px solid ${cores[index % cores.length]}`;
 
         let listaHTML = '';
@@ -155,10 +151,16 @@ function renderizarPlacas() {
         container.appendChild(card);
     });
 
+    
+    const totalGeral = dadosSolar.reduce((acc, placa) => {
+        return acc + placa.leituras.reduce((sum, l) => sum + l.kwh, 0);
+    }, 0);
+
+    document.getElementById('totalGeralDisplay').textContent = `${totalGeral.toFixed(2)} kWh`;
+
     atualizarGrafico();
 }
 
-// Lógica do Gráfico
 function mudarPeriodo(p) {
     periodoGrafico = p;
     document.getElementById('btnDia').style.background = p === 'dia' ? '#3498db' : '#ecf0f1';
@@ -175,8 +177,6 @@ function atualizarGrafico() {
         graficoSolarRef.destroy();
     }
 
-    // Preparar dados
-    // Preciso unir todas as datas/meses de todas as placas e ordenar
     let labels = new Set();
     let datasets = [];
 
@@ -186,9 +186,9 @@ function atualizarGrafico() {
         placa.leituras.forEach(l => {
             let chave;
             if (periodoGrafico === 'dia') {
-                chave = l.data; // YYYY-MM-DD
+                chave = l.data; 
             } else {
-                chave = l.data.substring(0, 7); // YYYY-MM
+                chave = l.data.substring(0, 7); 
             }
 
             dadosAgrupados[chave] = (dadosAgrupados[chave] || 0) + l.kwh;
@@ -197,7 +197,7 @@ function atualizarGrafico() {
 
         datasets.push({
             label: placa.nome,
-            data: dadosAgrupados, // Será processado depois
+            data: dadosAgrupados, 
             borderColor: cores[index % cores.length],
             backgroundColor: cores[index % cores.length],
             tension: 0.3,
@@ -205,15 +205,13 @@ function atualizarGrafico() {
         });
     });
 
-    // Converter Set para Array e ordenar
+    
     let labelsArray = Array.from(labels).sort();
 
-    // Normalizar datasets para garantir que todos tenham valor para todas as labels (ou null/0)
     datasets.forEach(ds => {
         ds.data = labelsArray.map(label => ds.data[label] || 0);
     });
 
-    // Formatar Labels para o usuário
     let labelsFormatadas = labelsArray.map(l => {
         if (periodoGrafico === 'dia') return formatarData(l);
         else {

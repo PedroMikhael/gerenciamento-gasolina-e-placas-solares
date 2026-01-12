@@ -20,7 +20,6 @@
 
     <div class="container">
 
-        <!-- Área para adicionar novas placas -->
         <div class="carro" style="border-left: 5px solid #f39c12;">
             <h2>➕ Nova Placa</h2>
             <div class="inputs-grid">
@@ -39,15 +38,28 @@
             </div>
         </div>
 
-        <!-- Onde as placas serão geradas dinamicamente -->
+        
         <div id="placasContainer"
             style="width: 100%; display: flex; flex-direction: column; gap: 25px; align-items: center;">
-            <!-- Placas inseridas via JS -->
+            
         </div>
 
         <div class="grafico-container">
             <h2>📊 Comparativo de Geração (kWh)</h2>
-            <canvas id="graficoSolar"></canvas>
+
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+                <div style="flex: 1; min-width: 300px;">
+                    <canvas id="graficoSolar"></canvas>
+                </div>
+
+                <div
+                    style="min-width: 200px; padding: 20px; background: #ecf0f1; border-radius: 10px; text-align: center; border-left: 5px solid #27ae60;">
+                    <h3 style="color: #2c3e50; margin-bottom: 5px;">⚡ Total Acumulado</h3>
+                    <p id="totalGeralDisplay" style="font-size: 2.2rem; font-weight: 700; color: #27ae60;">0,00 kWh</p>
+                    <p style="font-size: 0.9rem; color: #7f8c8d;">Soma de todas as placas</p>
+                </div>
+            </div>
+
             <div style="margin-top: 15px; text-align: center;">
                 <button class="btn" onclick="mudarPeriodo('dia')" id="btnDia"
                     style="background: #3498db; color: white;">Por Dia</button>
